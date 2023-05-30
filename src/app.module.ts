@@ -8,6 +8,9 @@ import * as path from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { ArticleModule } from './domain/article/article.module';
+import { UserEntity } from './entities/user.entity';
+import { ArticleEntity } from './entities/article.entity';
+import { CommentEntity } from './entities/comment.entity';
 
 console.log(`.env.${process.env.NODE_ENV}`);
 
@@ -27,7 +30,7 @@ console.log(`.env.${process.env.NODE_ENV}`);
         database: configService.get('DB_NAME'),
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
-        entities: [path.join(__dirname, 'entities/**/*.entity.{js, ts}')],
+        entities: [UserEntity,ArticleEntity,CommentEntity],
         synchronize: false,
         logging: true,
         timezone: 'local',
